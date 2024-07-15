@@ -12,12 +12,16 @@
     <div id="app">
         <h1>Pomodoro Timer</h1>
         <div>
-            <label for="work-time">Work Time (minutes):</label>
-            <input type="number" id="work-time" value="25">
+            <label for="work-hours">Work Time:</label>
+            <input type="number" id="work-hours" min="0" value="0"> :
+            <input type="number" id="work-minutes" min="0" max="59" value="25"> :
+            <input type="number" id="work-seconds" min="0" max="59" value="0">
         </div>
         <div>
-            <label for="break-time">Break Time (minutes):</label>
-            <input type="number" id="break-time" value="5">
+            <label for="break-hours">Break Time:</label>
+            <input type="number" id="break-hours" min="0" value="0"> :
+            <input type="number" id="break-minutes" min="0" max="59" value="5"> :
+            <input type="number" id="break-seconds" min="0" max="59" value="0">
         </div>
         <button id="save-settings">Save Settings</button>
         <div id="timer">25:00</div>

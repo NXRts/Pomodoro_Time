@@ -9,13 +9,19 @@ const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
 const saveSettingsButton = document.getElementById('save-settings');
-const workTimeInput = document.getElementById('work-time');
-const breakTimeInput = document.getElementById('break-time');
+
+const workHoursInput = document.getElementById('work-hours');
+const workMinutesInput = document.getElementById('work-minutes');
+const workSecondsInput = document.getElementById('work-seconds');
+const breakHoursInput = document.getElementById('break-hours');
+const breakMinutesInput = document.getElementById('break-minutes');
+const breakSecondsInput = document.getElementById('break-seconds');
 
 function displayTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
     const remainderSeconds = seconds % 60;
-    timerDisplay.textContent = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+    timerDisplay.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
 }
 
 function startTimer() {
@@ -44,8 +50,16 @@ function resetTimer() {
 }
 
 function saveSettings() {
-    workTime = parseInt(workTimeInput.value) * 60;
-    breakTime = parseInt(breakTimeInput.value) * 60;
+    const workHours = parseInt(workHoursInput.value) || 0;
+    const workMinutes = parseInt(workMinutesInput.value) || 0;
+    const workSeconds = parseInt(workSecondsInput.value) || 0;
+    workTime = (workHours * 3600) + (workMinutes * 60) + workSeconds;
+
+    const breakHours = parseInt(breakHoursInput.value) || 0;
+    const breakMinutes = parseInt(breakMinutesInput.value) || 0;
+    const breakSeconds = parseInt(breakSecondsInput.value) || 0;
+    breakTime = (breakHours * 3600) + (breakMinutes * 60) + breakSeconds;
+
     resetTimer();
 }
 

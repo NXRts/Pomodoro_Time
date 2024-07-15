@@ -1,3 +1,12 @@
+/* 
+| Selamat datang di web Pomodoro Timer! saya
+| membuat ini untuk membantu Anda mengatur waktu
+| bekerja dan istirahat dengan lebih efisien.
+| 
+    @NXRts
+*/
+
+
 let timer;
 let countdown;
 let workTime = 25 * 60;
@@ -9,6 +18,7 @@ const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
 const saveSettingsButton = document.getElementById('save-settings');
+const notificationSound = document.getElementById('notification-sound');
 
 const workHoursInput = document.getElementById('work-hours');
 const workMinutesInput = document.getElementById('work-minutes');
@@ -18,10 +28,9 @@ const breakMinutesInput = document.getElementById('break-minutes');
 const breakSecondsInput = document.getElementById('break-seconds');
 
 function displayTime(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
+    const minutes = Math.floor(seconds / 60);
     const remainderSeconds = seconds % 60;
-    timerDisplay.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+    timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
 }
 
 function startTimer() {
@@ -35,9 +44,10 @@ function startTimer() {
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
+            notificationSound.play();
             isWorkTime = !isWorkTime;
             timeLeft = isWorkTime ? workTime : breakTime;
-            startTimer();  // Automatically start the next session
+            startTimer();
         }
     }, 1000);
 }
@@ -51,12 +61,12 @@ function resetTimer() {
 
 function saveSettings() {
     const workHours = parseInt(workHoursInput.value) || 0;
-    const workMinutes = parseInt(workMinutesInput.value) || 0;
+    const workMinutes = parseInt(workMinutesInput.value) || 25;
     const workSeconds = parseInt(workSecondsInput.value) || 0;
     workTime = (workHours * 3600) + (workMinutes * 60) + workSeconds;
 
     const breakHours = parseInt(breakHoursInput.value) || 0;
-    const breakMinutes = parseInt(breakMinutesInput.value) || 0;
+    const breakMinutes = parseInt(breakMinutesInput.value) || 5;
     const breakSeconds = parseInt(breakSecondsInput.value) || 0;
     breakTime = (breakHours * 3600) + (breakMinutes * 60) + breakSeconds;
 

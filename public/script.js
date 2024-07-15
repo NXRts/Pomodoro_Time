@@ -6,7 +6,6 @@
     @NXRts
 */
 
-
 let timer;
 let countdown;
 let workTime = 25 * 60;
@@ -19,6 +18,8 @@ const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
 const saveSettingsButton = document.getElementById('save-settings');
 const notificationSound = document.getElementById('notification-sound');
+const alarmSound = document.getElementById('alarm-sound'); // Tambahkan ini
+const stopAlarmButton = document.getElementById('stop-alarm'); // Tambahkan ini
 
 const workHoursInput = document.getElementById('work-hours');
 const workMinutesInput = document.getElementById('work-minutes');
@@ -44,7 +45,11 @@ function startTimer() {
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            notificationSound.play();
+            if (isWorkTime) {
+                notificationSound.play();
+            } else {
+                startAlarm();
+            }
             isWorkTime = !isWorkTime;
             timeLeft = isWorkTime ? workTime : breakTime;
             startTimer();
@@ -52,11 +57,24 @@ function startTimer() {
     }, 1000);
 }
 
+function startAlarm() {
+    alarmSound.loop = true; // Mengatur alarm agar loop
+    alarmSound.play();
+    stopAlarmButton.style.display = 'block'; // Tampilkan tombol stop alarm
+}
+
+function stopAlarm() {
+    alarmSound.pause();
+    alarmSound.currentTime = 0; // Reset waktu alarm
+    stopAlarmButton.style.display = 'none'; // Sembunyikan tombol stop alarm
+}
+
 function resetTimer() {
     clearInterval(countdown);
     isWorkTime = true;
     timeLeft = workTime;
     displayTime(timeLeft);
+    stopAlarm(); // Pastikan alarm berhenti saat reset
 }
 
 function saveSettings() {
@@ -76,5 +94,6 @@ function saveSettings() {
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
 saveSettingsButton.addEventListener('click', saveSettings);
+stopAlarmButton.addEventListener('click', stopAlarm); // Tambahkan event listener untuk tombol stop alarm
 
 displayTime(timeLeft);

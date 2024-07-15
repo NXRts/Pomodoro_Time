@@ -111,3 +111,27 @@ button:hover {
         font-size: 36px;
     }
 }
+
+.controls {
+    display: flex;
+    justify-content: center;
+    /* Pusatkan konten */
+    margin-top: 20px;
+}
+
+#stop-alarm {
+    margin-left: 10px;
+    /* Memberikan jarak antara tombol */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background 0.3s ease;
+}
+
+#stop-alarm:hover {
+    background: rgba(255, 255, 255, 0.4);
+}

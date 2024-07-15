@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
+    <title>Aesthetic Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>Pomodoro Timer</h1>
+        <h1>Aesthetic Pomodoro Timer</h1>
         <div class="settings">
             <div class="input-group">
                 <label for="work-hours">Work Time:</label>
                 <div class="time-input">
-                    <input type="text" id="work-hours" min="0" value="0" placeholder="HH">
+                    <input type="number" id="work-hours" min="0" value="0" placeholder="HH">
                     <span>:</span>
-                    <input type="text" id="work-minutes" min="1" max="59" value="25" placeholder="MM">
+                    <input type="number" id="work-minutes" min="0" max="59" value="25" placeholder="MM">
                     <span>:</span>
-                    <input type="text" id="work-seconds" min="0" max="59" value="0" placeholder="SS">
+                    <input type="number" id="work-seconds" min="0" max="59" value="0" placeholder="SS">
                 </div>
             </div>
             <div class="input-group">
                 <label for="break-hours">Break Time:</label>
                 <div class="time-input">
-                    <input type="text" id="break-hours" min="0" value="0" placeholder="HH">
+                    <input type="number" id="break-hours" min="0" value="0" placeholder="HH">
                     <span>:</span>
-                    <input type="text" id="break-minutes" min="1" max="59" value="5" placeholder="MM">
+                    <input type="number" id="break-minutes" min="1" max="59" value="5" placeholder="MM">
                     <span>:</span>
-                    <input type="text" id="break-seconds" min="0" max="59" value="0" placeholder="SS">
+                    <input type="number" id="break-seconds" min="0" max="59" value="0" placeholder="SS">
                 </div>
             </div>
             <button id="save-settings">Save Settings</button>
@@ -38,9 +38,11 @@
         <div class="controls">
             <button id="start">Start</button>
             <button id="reset">Reset</button>
+            <button id="stop-alarm" style="display:none;">Stop Alarm</button> <!-- Tombol untuk menghentikan alarm -->
         </div>
     </div>
-    <audio id="notification-sound" src="notification.mp3"></audio>
+    <audio id="notification-sound" src="assets/alarm.wav"></audio>
+    <audio id="alarm-sound" src="assets/alarm.wav"></audio> <!-- Tambahkan audio untuk alarm -->
     <script src="script.js"></script>
 </body>
 

@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetic Pomodoro Timer</title>
+    <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>Aesthetic Pomodoro Timer</h1>
+        <h4 id="alert-message" style="color: rgb(255, 255, 255); display: none;">Silakan pause timer terlebih dahulu untuk beralih ke
+            waktu istirahat.
+        <hr>
+        </h4>
+        <h1>NXRts Pomodoro Timer</h1>
         <div class="settings">
             <div class="input-group">
                 <label for="work-hours">Work Time:</label>
@@ -37,13 +41,17 @@
         <div id="timer">25:00</div>
         <div class="controls">
             <button id="start">Start</button>
-            <button id="reset">Reset</button>
-            <button id="stop-alarm" style="display:none;">Stop Alarm</button> <!-- Tombol untuk menghentikan alarm -->
-            <h3></h3>
+            <button id="pause">Pause</button>
+            <button id="stop-alarm" style="display:none;">Stop Alarm</button>
         </div>
+        <div class="break-controls">
+            <button id="short-break">Short Break</button>
+            <button id="long-break">Long Break</button>
+        </div>
+        <button id="darkmode">Toggle Darkmode</button>
     </div>
-    <audio id="notification-sound" src="assets/alarm.wav"></audio>
-    <audio id="alarm-sound" src="assets/alarm.wav"></audio> <!-- Tambahkan audio untuk alarm -->
+    <audio id="notification-sound" src="assets/notification.wav"></audio>
+    <audio id="alarm-sound" src="assets/alarm.wav"></audio>
     <script src="script.js"></script>
 </body>
 

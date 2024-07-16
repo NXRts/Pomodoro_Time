@@ -10,10 +10,18 @@ body {
     height: 100vh;
     color: white;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
+}
+
+body.darkmode {
+    /* background: #121212; */
+    background-image: url(assets/new3.jpg);
+    color: #ffffff;
+
 }
 
 #app {
-    background: rgba(255, 255, 255, 0.1);
+    /* background: rgba(255, 255, 255, 0.1); */
     backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 10px;
@@ -22,6 +30,13 @@ body {
     width: 100%;
     max-width: 400px;
     margin: 20px;
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
+}
+
+#app.darkmode {
+    background: rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -30,7 +45,8 @@ h1 {
 }
 
 .settings,
-.controls {
+.controls,
+.break-controls {
     margin-bottom: 20px;
 }
 
@@ -83,6 +99,13 @@ button:hover {
     background: rgba(255, 255, 255, 0.4);
 }
 
+button.active {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+}
+
+
 #timer {
     font-size: 48px;
     margin: 20px 0;
@@ -112,16 +135,16 @@ button:hover {
     }
 }
 
-.controls {
+.controls,
+.break-controls {
     display: flex;
     justify-content: center;
-    /* Pusatkan konten */
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 #stop-alarm {
     margin-left: 10px;
-    /* Memberikan jarak antara tombol */
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -134,4 +157,10 @@ button:hover {
 
 #stop-alarm:hover {
     background: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    flex: 1;
+    min-width: 100px;
+    margin: 5px;
 }

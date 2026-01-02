@@ -1,220 +1,166 @@
 body {
-  background-image: url(assets/new2.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Parallax effect */
-  font-family: "Poppins", sans-serif; /* Modern font */
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: white;
-  transition: background 0.5s ease;
+    background-image: url(assets/new2.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
 }
 
 body.darkmode {
-  background-image: url(assets/new3.jpg);
+    /* background: #121212; */
+    background-image: url(assets/new3.jpg);
+    color: #ffffff;
+
 }
 
-/* Glassmorphism Container */
 #app {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px); /* Stronger blur */
-  -webkit-backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  width: 90%;
-  max-width: 450px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transition: all 0.3s ease;
+    /* background: rgba(255, 255, 255, 0.1); */
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
 }
 
 #app.darkmode {
-  background: rgba(0, 0, 0, 0.6); /* Darker glass for darkmode */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#app:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 h1 {
-  font-weight: 600;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-  font-size: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 0 20px 0;
 }
 
-h4#alert-message {
-  background: rgba(255, 87, 87, 0.8);
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 400;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  animation: fadeIn 0.3s ease;
+.settings,
+.controls,
+.break-controls {
+    margin-bottom: 20px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.input-group {
+    margin-bottom: 15px;
 }
 
-/* Inputs */
 .input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 300;
-  font-size: 0.9rem;
-  opacity: 0.9;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .time-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .time-input input {
-  width: 50px;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  font-size: 1.1rem;
-  font-family: "Poppins", sans-serif;
-  transition: all 0.2s ease;
-}
-
-.time-input input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: scale(1.05);
+    width: 60px;
+    padding: 10px;
+    margin: 0 5px;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
 }
 
 .time-input span {
-  font-size: 1.5rem;
-  font-weight: 300;
+    font-size: 20px;
+    color: white;
 }
 
-/* Timer Display */
-#timer {
-  font-size: 5rem; /* Bigger timer */
-  font-weight: 600;
-  margin: 30px 0;
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-  font-variant-numeric: tabular-nums; /* Prevents jitter */
-}
-
-/* Buttons */
 button {
-  padding: 12px 24px;
-  margin: 8px; /* Slightly more space */
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: "Poppins", sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-  transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 button.active {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0.1)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
 }
 
-/* Specific button styles (optional) */
-#start {
-  background: rgba(76, 175, 80, 0.4);
-}
-#start:hover {
-  background: rgba(76, 175, 80, 0.6);
+
+#timer {
+    font-size: 48px;
+    margin: 20px 0;
 }
 
-#pause {
-  background: rgba(255, 152, 0, 0.4);
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    #app {
+        padding: 15px;
+    }
+
+    .time-input input {
+        width: 50px;
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #timer {
+        font-size: 36px;
+    }
 }
-#pause:hover {
-  background: rgba(255, 152, 0, 0.6);
+
+.controls,
+.break-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 #stop-alarm {
-  background: rgba(244, 67, 54, 0.6);
-  animation: pulse 1s infinite;
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background 0.3s ease;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+#stop-alarm:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
 
-/* Controls Layout */
-.controls,
-.break-controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-  #app {
-    width: 100%;
-    margin: 10px;
-    padding: 20px;
-  }
-
-  #timer {
-    font-size: 4rem;
-  }
-
-  button {
-    padding: 10px 16px;
-    font-size: 0.9rem;
-    flex: 1 1 40%; /* 2 buttons per row */
-  }
+button {
+    flex: 1;
+    min-width: 100px;
+    margin: 5px;
 }

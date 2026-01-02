@@ -68,7 +68,7 @@ function startTimer() {
   displayTime(timeLeft);
 
   countdown = setInterval(() => {
-    const secondsLeft = Math.round((then - Date.now()) / 1000);
+    const secondsLeft = Math.ceil((then - Date.now()) / 1000);
 
     // Check if time is up
     if (secondsLeft < 0) {
@@ -103,17 +103,44 @@ function pauseTimer() {
 }
 
 function saveSettings() {
-  const workHours = parseInt(workHoursInput.value) || 0;
-  const workMinutes = parseInt(workMinutesInput.value) || 25;
-  const workSeconds = parseInt(workSecondsInput.value) || 0;
-  workTime = workHours * 3600 + workMinutes * 60 + workSeconds;
+  // Stop the timer before applying settings to prevent conflicts
+  if (currentTimerState !== TIMER_STATE.STOPPED) {
+      stopAlarm(); // Uses stop logic to reset state
+  }
 
-  const breakHours = parseInt(breakHoursInput.value) || 0;
-  const breakMinutes = parseInt(breakMinutesInput.value) || 5;
-  const breakSeconds = parseInt(breakSecondsInput.value) || 0;
-  breakTime = breakHours * 3600 + breakMinutes * 60 + breakSeconds;
+  // Validate inputs (prevent negative numbers)
+  let wHours = parseInt(workHoursInput.value) || 0;
+  let wMinutes = parseInt(workMinutesInput.value) || 0; 
+  let wSeconds = parseInt(workSecondsInput.value) || 0;
+  if(wHours < 0) wHours = 0;
+  if(wMinutes < 0) wMinutes = 0;
+  if(wSeconds < 0) wSeconds = 0;
+  
+  // Default to 25 mins if everything is 0
+  if (wHours === 0 && wMinutes === 0 && wSeconds === 0) {
+      wMinutes = 25;
+      workMinutesInput.value = 25;
+  }
 
-  timeLeft = workTime;
+  workTime = wHours * 3600 + wMinutes * 60 + wSeconds;
+
+  let bHours = parseInt(breakHoursInput.value) || 0;
+  let bMinutes = parseInt(breakMinutesInput.value) || 0;
+  let bSeconds = parseInt(breakSecondsInput.value) || 0;
+  if(bHours < 0) bHours = 0;
+  if(bMinutes < 0) bMinutes = 0;
+  if(bSeconds < 0) bSeconds = 0;
+
+  // Default brake to 5 min if 0
+  if (bHours === 0 && bMinutes === 0 && bSeconds === 0) {
+      bMinutes = 5;
+      breakMinutesInput.value = 5;
+  }
+
+  breakTime = bHours * 3600 + bMinutes * 60 + bSeconds;
+
+  // Update timeLeft based on current mode
+  timeLeft = isWorkTime ? workTime : breakTime;
   displayTime(timeLeft);
 }
 

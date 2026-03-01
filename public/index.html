@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/ico.jpeg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -16,11 +16,6 @@
 </head>
 
 <body>
-  <!-- Theme Toggle -->
-  <button id="darkmode" class="icon-btn theme-toggle" title="Toggle Theme">
-    <i data-feather="moon"></i>
-  </button>
-
   <div id="app" class="glass-panel">
     <!-- Status Badge -->
     <div id="status-badge" class="badge">Session: Work</div>
@@ -61,14 +56,14 @@
 
     <!-- Mode Selection -->
     <div class="break-controls mode-selector">
+      <button id="work-mode" class="btn mode-btn active"> <!-- Added manual work mode return -->
+        <i data-feather="briefcase"></i> Work
+      </button>
       <button id="short-break" class="btn mode-btn">
         <i data-feather="coffee"></i> Short Break
       </button>
       <button id="long-break" class="btn mode-btn">
         <i data-feather="battery-charging"></i> Long Break
-      </button>
-      <button id="work-mode" class="btn mode-btn active"> <!-- Added manual work mode return -->
-        <i data-feather="briefcase"></i> Work
       </button>
     </div>
 

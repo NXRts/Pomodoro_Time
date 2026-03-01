@@ -1,27 +1,5 @@
 :root {
-    /* Colors - Light Theme */
-    --bg-color: #f0f4f8;
-    --text-main: #2d3748;
-    --text-muted: #718096;
-    --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.4);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    --ring-track: rgba(0, 0, 0, 0.05);
-    --ring-progress: #4fd1c5;
-    --ring-progress-break: #4299e1;
-    --btn-primary: #4fd1c5;
-    --btn-primary-hover: #38b2ac;
-    --btn-secondary: rgba(0, 0, 0, 0.05);
-    --btn-secondary-hover: rgba(0, 0, 0, 0.1);
-    --btn-danger: #fc8181;
-    --btn-danger-hover: #f56565;
-
-    /* Fonts */
-    --font-family: 'Poppins', sans-serif;
-}
-
-body.darkmode {
-    /* Colors - Dark Theme */
+    /* Colors - Dark Theme (Default) */
     --bg-color: #1a202c;
     --text-main: #f7fafc;
     --text-muted: #a0aec0;
@@ -35,6 +13,11 @@ body.darkmode {
     --btn-primary-hover: #319795;
     --btn-secondary: rgba(255, 255, 255, 0.1);
     --btn-secondary-hover: rgba(255, 255, 255, 0.2);
+    --btn-danger: #fc8181;
+    --btn-danger-hover: #f56565;
+
+    /* Fonts */
+    --font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -69,30 +52,6 @@ body {
     flex-direction: column;
     align-items: center;
     transition: all 0.5s ease;
-}
-
-/* Theme Toggle */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    padding: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    color: var(--text-main);
-    box-shadow: var(--glass-shadow);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-    transform: translateY(-2px) rotate(15deg);
 }
 
 /* Badge */

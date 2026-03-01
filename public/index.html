@@ -1,104 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link: rel="icon" href="assets/ico.jpeg"> -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/ico.jpeg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <title>Aesthetic Pomodoro Timer</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <div id="app">
-      <h4 id="alert-message" style="color: rgb(255, 255, 255); display: none">
-        Silakan pause timer terlebih dahulu untuk beralih ke waktu istirahat.
-        <hr />
-      </h4>
-      <h1>Aesthetic Pomodoro Timer</h1>
-      <div class="settings">
-        <div class="input-group">
-          <label for="work-hours">Work Time:</label>
-          <div class="time-input">
-            <input
-              type="number"
-              id="work-hours"
-              min="0"
-              value="0"
-              placeholder="HH"
-            />
-            <span>:</span>
-            <input
-              type="number"
-              id="work-minutes"
-              min="0"
-              max="59"
-              value="25"
-              placeholder="MM"
-            />
-            <span>:</span>
-            <input
-              type="number"
-              id="work-seconds"
-              min="0"
-              max="59"
-              value="0"
-              placeholder="SS"
-            />
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="break-hours">Break Time:</label>
-          <div class="time-input">
-            <input
-              type="number"
-              id="break-hours"
-              min="0"
-              value="0"
-              placeholder="HH"
-            />
-            <span>:</span>
-            <input
-              type="number"
-              id="break-minutes"
-              min="1"
-              max="59"
-              value="5"
-              placeholder="MM"
-            />
-            <span>:</span>
-            <input
-              type="number"
-              id="break-seconds"
-              min="0"
-              max="59"
-              value="0"
-              placeholder="SS"
-            />
-          </div>
-        </div>
-        <button id="save-settings">Save Settings</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/ico.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Feather Icons for clean minimal icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Theme Toggle -->
+  <button id="darkmode" class="icon-btn theme-toggle" title="Toggle Theme">
+    <i data-feather="moon"></i>
+  </button>
+
+  <div id="app" class="glass-panel">
+    <!-- Status Badge -->
+    <div id="status-badge" class="badge">Session: Work</div>
+
+    <h4 id="alert-message" class="alert-box">
+      <i data-feather="info"></i> Please pause the timer before switching modes.
+    </h4>
+
+    <!-- Circular Timer Container -->
+    <div class="timer-container">
+      <!-- SVG Progress Ring -->
+      <svg class="progress-ring" width="280" height="280">
+        <!-- Background track -->
+        <circle class="progress-ring__track" stroke-width="8" fill="transparent" r="130" cx="140" cy="140" />
+        <!-- Foreground progress -->
+        <circle class="progress-ring__circle" stroke-width="12" fill="transparent" r="130" cx="140" cy="140" />
+      </svg>
+
+      <!-- Timer Text Inside Ring -->
+      <div class="timer-text-container">
+        <div id="timer">25:00</div>
+        <div id="mode-label">Focus</div>
       </div>
-      <div id="timer">25:00</div>
-      <div class="controls">
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
-        <button id="stop-alarm" style="display: none">Stop Alarm</button>
-      </div>
-      <div class="break-controls">
-        <button id="short-break">Short Break</button>
-        <button id="long-break">Long Break</button>
-      </div>
-      <button id="darkmode">Toggle Darkmode</button>
     </div>
-    <audio id="notification-sound" src="assets/notification.wav"></audio>
-    <audio id="alarm-sound" src="assets/alarm.wav"></audio>
-    <script src="script.js"></script>
-  </body>
+
+    <!-- Main Controls -->
+    <div class="controls main-controls">
+      <button id="start" class="btn primary-btn">
+        <i data-feather="play"></i> <span class="btn-text">Start</span>
+      </button>
+      <button id="pause" class="btn secondary-btn" disabled>
+        <i data-feather="pause"></i> <span class="btn-text">Pause</span>
+      </button>
+      <button id="stop-alarm" class="btn danger-btn hide">
+        <i data-feather="bell-off"></i> <span class="btn-text">Stop Alarm</span>
+      </button>
+    </div>
+
+    <!-- Mode Selection -->
+    <div class="break-controls mode-selector">
+      <button id="short-break" class="btn mode-btn">
+        <i data-feather="coffee"></i> Short Break
+      </button>
+      <button id="long-break" class="btn mode-btn">
+        <i data-feather="battery-charging"></i> Long Break
+      </button>
+      <button id="work-mode" class="btn mode-btn active"> <!-- Added manual work mode return -->
+        <i data-feather="briefcase"></i> Work
+      </button>
+    </div>
+
+    <!-- Settings Section -->
+    <div class="settings-panel">
+      <button id="toggle-settings" class="icon-btn settings-toggle" title="Settings">
+        <i data-feather="settings"></i>
+      </button>
+
+      <div class="settings-content hide">
+        <h3><i data-feather="sliders"></i> Timer Settings (Minutes)</h3>
+
+        <div class="settings-grid">
+          <div class="input-card">
+            <label for="work-duration">Work</label>
+            <input type="number" id="work-duration" min="1" max="180" value="25" />
+          </div>
+
+          <div class="input-card">
+            <label for="short-break-duration">Short Break</label>
+            <input type="number" id="short-break-duration" min="1" max="60" value="5" />
+          </div>
+
+          <div class="input-card">
+            <label for="long-break-duration">Long Break</label>
+            <input type="number" id="long-break-duration" min="1" max="60" value="15" />
+          </div>
+        </div>
+
+        <button id="save-settings" class="btn primary-btn full-width mt-10">
+          <i data-feather="save"></i> Save Settings
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Audio -->
+  <audio id="alarm-sound" src="assets/alarm.wav" preload="auto"></audio>
+
+  <script>
+    // Initialize Feather icons
+    feather.replace();
+  </script>
+  <script src="script.js"></script>
+</body>
+
 </html>

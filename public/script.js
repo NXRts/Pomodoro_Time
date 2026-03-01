@@ -25,7 +25,6 @@ const TIMER_STATE = {
   PAUSED: 'PAUSED'
 };
 let currentTimerState = TIMER_STATE.STOPPED;
-let isDarkTheme = false;
 
 // DOM Elements
 const timerDisplay = document.getElementById("timer");
@@ -40,7 +39,6 @@ const stopAlarmBtn = document.getElementById("stop-alarm");
 const workModeBtn = document.getElementById("work-mode");
 const shortBreakBtn = document.getElementById("short-break");
 const longBreakBtn = document.getElementById("long-break");
-const themeToggleBtn = document.getElementById("darkmode");
 const settingsToggleBtn = document.getElementById("toggle-settings");
 const settingsContent = document.querySelector(".settings-content");
 const saveSettingsBtn = document.getElementById("save-settings");
@@ -201,14 +199,12 @@ function loadSettings() {
     workTime = (data.work || 25) * 60;
     shortBreakTime = (data.shortBreak || 5) * 60;
     longBreakTime = (data.longBreak || 15) * 60;
-    isDarkTheme = data.darkmode || false;
 
     workDurationInput.value = data.work || 25;
     shortBreakDurationInput.value = data.shortBreak || 5;
     longBreakDurationInput.value = data.longBreak || 15;
   }
 
-  applyTheme();
   // Ensure mode is reapplied with loaded times
   changeMode(currentMode);
 }
@@ -229,34 +225,11 @@ function saveSettings() {
   localStorage.setItem('pomodoroSettings', JSON.stringify({
     work: w,
     shortBreak: sb,
-    longBreak: lb,
-    darkmode: isDarkTheme
+    longBreak: lb
   }));
 
   changeMode(currentMode); // Reset with new time
   toggleOptions();
-}
-
-function toggleTheme() {
-  isDarkTheme = !isDarkTheme;
-  applyTheme();
-
-  // Save to local storage
-  const saved = JSON.parse(localStorage.getItem('pomodoroSettings') || '{}');
-  saved.darkmode = isDarkTheme;
-  localStorage.setItem('pomodoroSettings', JSON.stringify(saved));
-}
-
-function applyTheme() {
-  if (isDarkTheme) {
-    document.body.classList.add("darkmode");
-    themeToggleBtn.innerHTML = '<i data-feather="sun"></i>';
-  } else {
-    document.body.classList.remove("darkmode");
-    themeToggleBtn.innerHTML = '<i data-feather="moon"></i>';
-  }
-  // Re-render feather icons since we replaced innerHTML
-  if (window.feather) { feather.replace(); }
 }
 
 // Event Listeners
@@ -268,10 +241,8 @@ workModeBtn.addEventListener("click", () => changeMode(MODES.WORK));
 shortBreakBtn.addEventListener("click", () => changeMode(MODES.SHORT_BREAK));
 longBreakBtn.addEventListener("click", () => changeMode(MODES.LONG_BREAK));
 
-themeToggleBtn.addEventListener("click", toggleTheme);
 settingsToggleBtn.addEventListener("click", toggleOptions);
 saveSettingsBtn.addEventListener("click", saveSettings);
 
 // Initialization
 loadSettings();
-
